@@ -13,7 +13,7 @@ int main()
 		int i, j;
 		double l = 0;
 		const int n = 6;
-		double a[n][n], b[n][1], x[n][1], T[n][1], e, k, I[n][4], IOFF[1][4];
+		double a[n][n], b[n][1], x[n][1], T[n][1], e, k=0, I[n][4], IOFF[1][4];
 		int tempe;
 
 		for (int i = 0; i < n; i++)
@@ -36,7 +36,7 @@ int main()
 		}
 		for (int i = 0; i < n; i++)
 		{
-			for (int j = 0; j < 4; j++)
+			for (int j = 0; j < n; j++)
 			{
 				a[i][j] = 0;
 			}
@@ -68,9 +68,10 @@ int main()
 			T[i][0] = 0;
 		l = 0;
 		while (1)
-		{	
+		{
+			k++;
 			l = 0;
-			cout << "\nIteration no: " << l << "\n";
+			cout << "\nIteration no: " <<k<< "\n";
 			for (i = 0; i < n; i++)
 			{
 				x[i][0] = (1 / a[i][i])*(b[i][0]);
@@ -82,10 +83,13 @@ int main()
 				}
 				//cout << "\n";
 			}
-			for (i = 0; i < n; i++)
+			if (k != 1)
 			{
-				if (fabs(x[i][0] - T[i][0]) < e);
-				l++;
+				for (i = 0; i < n; i++)
+				{
+					if (fabs(x[i][0] - T[i][0]) < e);
+					l++;
+				}
 			}
 			if (l >= n)
 				break;
